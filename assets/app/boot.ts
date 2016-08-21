@@ -5,6 +5,5 @@ import { LocationStrategy, HashLocationStrategy } from "@angular/common";
 import { provide } from "@angular/core";
 
 import { AppComponent } from "./app.component";
-import { MessageService } from "./messages/message.service";
 
-bootstrap(AppComponent, [MessageService, ROUTER_PROVIDERS, provide(LocationStrategy, {useClass: HashLocationStrategy})]);
+bootstrap(AppComponent, [ROUTER_PROVIDERS]);

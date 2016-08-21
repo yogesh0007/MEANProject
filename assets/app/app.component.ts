@@ -3,12 +3,44 @@ import { Component } from '@angular/core';
 @Component({
     selector: 'my-app',
     template: `
-        <div class="container">
-            <h1>Hello World in RIO</h1>
-        </div>
-    `
+            <div class="row">
+              <section class="col-md-8 col-md-offset-2">
+                <input type="text" [(ngModel)] = "message.content"/>
+              </section>
+            </div>
+            <div class="row">
+              <section class="col-md-8 col-md-offset-2">
+                <article class="panel panel-default">
+                  <div class="panel-body">{{message.content}}</div>
+                  <footer class="panel-footer">
+                    <div class="author ">{{message.author}}</div>
+                    <div class="config">
+                      <a href="#">Edit</a>
+                      <a href="#">Delete</a>
+                    </div>
+                    <div class="ramu"></div>
+                  </footer>
+                </article>
+              </section>
+            </div>
+    `,
+    styles: [`
+
+        .author{
+          float: left;
+        }
+        .config{
+          float:right;
+        }
+        .ramu{
+          clear: both;
+        }
+      `]
 })
 
 export class AppComponent {
-
+  message = {
+    content : 'A message from RIO Brazil.',
+    author : 'Yogesh Prasai'
+  }
 }
