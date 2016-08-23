@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {MessageComponent} from './messages/message.component';
 
 @Component({
     selector: 'my-app',
@@ -10,20 +11,11 @@ import { Component } from '@angular/core';
             </div>
             <div class="row">
               <section class="col-md-8 col-md-offset-2">
-                <article class="panel panel-default">
-                  <div class="panel-body">{{message.content}}</div>
-                  <footer class="panel-footer">
-                    <div class="author ">{{message.author}}</div>
-                    <div class="config">
-                      <a href="#">Edit</a>
-                      <a href="#">Delete</a>
-                    </div>
-                    <div class="ramu"></div>
-                  </footer>
-                </article>
+                <my-message></my-message>
               </section>
             </div>
     `,
+    directives: [MessageComponent],
     styles: [`
 
         .author{
@@ -40,7 +32,7 @@ import { Component } from '@angular/core';
 
 export class AppComponent {
   message = {
-    content : 'A message from RIO Brazil.',
+    content : 'A message from Yogesh.',
     author : 'Yogesh Prasai'
   }
 }
