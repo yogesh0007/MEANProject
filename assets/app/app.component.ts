@@ -1,38 +1,22 @@
 import { Component } from '@angular/core';
-import {MessageComponent} from './messages/message.component';
+import {MessageListComponent} from './messages/message-list.component'
+import {MessageInputComponent} from './messages/message-input.component';
 
 @Component({
     selector: 'my-app',
     template: `
             <div class="row">
               <section class="col-md-8 col-md-offset-2">
-                <input type="text" [(ngModel)] = "message.content"/>
+                <my-message-input></my-message-input>
               </section>
             </div>
             <div class="row">
-              <section class="col-md-8 col-md-offset-2">
-                <my-message></my-message>
-              </section>
+                <my-message-list></my-message-list>
             </div>
     `,
-    directives: [MessageComponent],
-    styles: [`
-
-        .author{
-          float: left;
-        }
-        .config{
-          float:right;
-        }
-        .ramu{
-          clear: both;
-        }
-      `]
+    directives: [MessageListComponent, MessageInputComponent]
 })
 
 export class AppComponent {
-  message = {
-    content : 'A message from Yogesh.',
-    author : 'Yogesh Prasai'
-  }
+
 }
