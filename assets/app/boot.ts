@@ -6,4 +6,4 @@ import { provide } from "@angular/core";
 import { AppComponent } from "./app.component";
 import {MessageService} from "./messages/message.service";
 
-bootstrap(AppComponent, [MessageService]);
+bootstrap(AppComponent, [MessageService, ROUTER_PROVIDERS]);

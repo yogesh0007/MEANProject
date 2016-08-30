@@ -31,6 +31,6 @@ export class MessageComponent{
   }
 
   onDelete(){
-
+    this._messageService.deleteMessage(this.message);
   }
 }
