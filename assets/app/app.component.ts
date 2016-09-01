@@ -19,6 +19,4 @@ import {HeaderComponent} from './header.component';
   {path: '/auth', component: AuthenticationComponent}
 ])
 
-export class AppComponent {
-
-}
+export class AppComponent {}
