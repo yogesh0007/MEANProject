@@ -1,41 +1,32 @@
-import {Component, OnInit} from '@angular/core';
-import {MessageComponent} from './message.component';
-import {Message} from './message';
-import {MessageService} from './message.service';
+import { Component, OnInit } from "@angular/core";
 
+import { MessageComponent } from "./message.component";
+import { Message } from "./message";
+import { MessageService } from "./message.service";
+import { ErrorService } from "../errors/error.service";
 @Component({
-    selector : 'my-message-list',
+    selector: 'my-message-list',
     template: `
-    <section class="col-md-8 col-md-offset-2">
-      <my-message *ngFor="let message of messages" [message] = message
-      (editClicked) = "message.content = $event"></my-message>
-    </section>
+        <section class="col-md-8 col-md-offset-2">
+            <my-message *ngFor="let message of messages" [message]="message" (editClicked)="message.content = $event"></my-message>     
+        </section>
     `,
-    styles: [`
-        .author{
-          float: left;
-        }
-        .config{
-          float:right;
-        }
-        .ramu{
-          clear: both;
-        }
-      `],
     directives: [MessageComponent]
 })
+export class MessageListComponent implements OnInit {
 
-export class MessageListComponent implements OnInit{
+    constructor(private _messageService: MessageService, private _errorService: ErrorService) {}
 
-  constructor(private _messageService: MessageService){}
-  messages: Message[];
+    messages: Message[];
 
-  ngOnInit(){
-      //this.messages: Message[] = [new Message('New Message', 'Yogesh'),
-      //                    new Message('Another message', 'Yashu')
-      //                  ];
-      this.messages = this._messageService.getMessage();
-      console.log(this.messages);
-  }
-
+    ngOnInit() {
+        this._messageService.getMessages()
+            .subscribe(
+                messages => {
+                    this.messages = messages;
+                    this._messageService.messages = messages;
+                },
+                error => this._errorService.handleError(error)
+            );
+    }
 }
